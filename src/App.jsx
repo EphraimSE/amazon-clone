@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";
+import Login from "./pages/Login";
 
 import {
   BrowserRouter as Router,
@@ -28,6 +29,7 @@ function App() {
 
             <Route path="/products" element={<Products />} />
             <Route path="/products/:id" element={<ProductDetails />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </main>
       </Router>
