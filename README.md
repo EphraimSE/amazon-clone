@@ -32,13 +32,13 @@ A full-stack e-commerce web application that replicates core Amazon functionalit
 
 ## Initial Project Structure 
 
-# components
+# Components
 Header.jsx
 ProductCard.jsx
 Cart.jsx
 Checkout.jsx
 
-# pages
+# Pages
 HomePage.jsx
 ProductPage.jsx
 CartPage.jsx
