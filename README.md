@@ -45,5 +45,5 @@ A full-stack e-commerce web application that replicates core Amazon functionalit
 - OrderPage.jsx
 
 
-### Project Installation
+## Project Installation
 
