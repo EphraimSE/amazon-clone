@@ -5,7 +5,12 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";
 
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 function App() {
   return (
@@ -15,10 +20,10 @@ function App() {
         <main>
           <Navbar />
           <Routes>
-            <Route path="/"  element={<Navigate to="/home" />} />
-            
-            <Route path="/home" element={<Home /> }>
-              <Route path="/home/username" element={<p>Welcome username!</p>}/>
+            <Route path="/" element={<Navigate to="/home" />} />
+
+            <Route path="/home" element={<Home />}>
+              <Route path="/home/username" element={<p>Welcome username!</p>} />
             </Route>
 
             <Route path="/products" element={<Products />} />
