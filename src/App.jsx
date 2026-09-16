@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";
 import Login from "./pages/Login";
+import Orders from "./pages/Orders";
 
 import {
   BrowserRouter as Router,
@@ -21,8 +22,8 @@ function App() {
         <main>
           <Navbar />
           <Routes>
+            {/* Redirect user to root home page */}
             <Route path="/" element={<Navigate to="/home" />} />
-
             <Route path="/home" element={<Home />}>
               <Route path="/home/username" element={<p>Welcome username!</p>} />
             </Route>
@@ -30,6 +31,7 @@ function App() {
             <Route path="/products" element={<Products />} />
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/orders" element={<Orders />} />
           </Routes>
         </main>
       </Router>

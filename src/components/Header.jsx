@@ -28,10 +28,12 @@ const Header = () => {
             <span className="header_optionTwo">Account & Lists</span>
           </div>
         </Link>
-        <div className="header_option">
-          <span className="header_optionOne">Returns</span>
-          <span className="header_optionTwo">& Orders</span>
-        </div>
+        <Link to="/orders">
+          <div className="header_option">
+            <span className="header_optionOne">Returns</span>
+            <span className="header_optionTwo">& Orders</span>
+          </div>
+        </Link>
         <div className="header_optionBasket">
           <span className="header_optionOne">
             <AddShoppingCartOutlinedIcon className="cart_icon" />

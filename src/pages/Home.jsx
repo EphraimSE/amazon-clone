@@ -5,9 +5,9 @@ const Home = () => {
     <div>
       <h1>Home Page</h1>
 
-        {/* <p>Welcome username!</p> */}
+      {/* <p>Welcome username!</p> */}
 
-      <Outlet />
+      <outlet />
     </div>
   );
 };
