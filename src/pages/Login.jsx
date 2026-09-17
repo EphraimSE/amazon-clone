@@ -1,45 +1,36 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const emailRef = useRef();
-  const passwordRef = useRef();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [formIsValid, setFormIsValid] = useState(false);
 
-  // run component once on component reload
-  useEffect(() => {
-    const user = localStorage.getItem("isLoggedIn");
+  useEffect(() =>{
+    setFormIsValid(email.includes("@") && password.trim().length > 6);
+  }, [email, password]);
 
-    if (user) {
-      setIsLoggedIn(true);
-    }
-  }, []);
+  // validate email contains @ symbol
+  const emailChangeHandler = (e) => {
+    setEmail(e.target.value);
+    
+  };
+
+  // validate password contains 6 or more characters
+  const passwordChangeHandler = (e) => {
+    setPassword(e.target.value);
+
+};
+  
   // prevent default form submit behavior
   const signIn = (e) => {
     e.preventDefault();
-    const enteredEmail = emailRef.current.value;
-    const enteredPassword = passwordRef.current.value;
-    console.log("Email:", enteredEmail + " Password:", enteredPassword);
-
-    localStorage.setItem("isLoggedIn", "1");
-    setIsLoggedIn(true);
-  };
-
-  // sign out function and remove user off local storage
-  const signOut = () => {
-    setIsLoggedIn(false);
-    localStorage.removeItem("isLoggedIn");
+    console.log(formIsValid);
   };
 
   return (
     <div className="login">
-      {/**user logged in status only if is logged in is true*/}
-      {isLoggedIn && (
-        <p>
-          You are logged in <button onClick={signOut}>Sign out</button>
-        </p>
-      )}
       <Link to="/">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
@@ -51,9 +42,15 @@ const Login = () => {
         <h1>sign in or create account</h1>
         <form>
           <h5>Enter mobile number or email Address</h5>
-          <input type="text" ref={emailRef} alt="Mobile or email address" />
+          <input type="text" 
+          value={email} 
+          onChange={emailChangeHandler}
+          />
           <h5>Password</h5>
-          <input type="password" ref={passwordRef} alt="password" />
+          <input type="password" 
+          value={password}
+          onChange={passwordChangeHandler}
+          />
 
           <button type="submit" className="login_signInButton" onClick={signIn}>
             Continue
@@ -72,6 +69,6 @@ const Login = () => {
       </div>
     </div>
   );
-};
+}
 
-export default Login;
+export default Login
