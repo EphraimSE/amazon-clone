@@ -8,7 +8,17 @@ const Login = () => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() =>{
+    // check for for validity
+    
+    const identifier = setTimeout (() => {
+    console.log("Checking form validity");
     setFormIsValid(email.includes("@") && password.trim().length > 6);
+}, 500);
+
+    return () => {
+      console.log("Cleanup funtion before next side effect");
+      clearTimeout(identifier);
+    };
   }, [email, password]);
 
   // validate email contains @ symbol
