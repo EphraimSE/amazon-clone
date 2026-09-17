@@ -1,42 +1,50 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useReducer} from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 
+
+// useReducer hook
+const reducer = (state, action) => {
+  if(action.type === "EMAIL_INPUT") {
+    return {...state, emailValue: action.payload}
+  }
+    if(action.type === "PASSWORD_INPUT") {
+    return {...state, passwordValue: action.payload}
+  }
+
+
+  return{ emailValue: "", passwordValue:"" } 
+};
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [formIsValid, setFormIsValid] = useState(false);
+  
+  //const [formIsValid, setFormIsValid] = useState(false);
 
-  useEffect(() =>{
-    // check for for validity
-    
-    const identifier = setTimeout (() => {
-    console.log("Checking form validity");
-    setFormIsValid(email.includes("@") && password.trim().length > 6);
-}, 500);
+  // initialize reducer
+  const [state, dispatch] = useReducer(reducer, {
+    emailValue: "",
+    passwordValue:"",
 
-    return () => {
-      console.log("Cleanup funtion before next side effect");
-      clearTimeout(identifier);
-    };
-  }, [email, password]);
-
-  // validate email contains @ symbol
+  });
+   // validate email contains @ symbol
   const emailChangeHandler = (e) => {
-    setEmail(e.target.value);
-    
+    dispatch({type: "EMAIL_INPUT", payload: e.target.value})
+    //setEmail(e.target.value);
+    //setFormIsValid(email.includes("@") && password.trim().length > 6);
   };
 
   // validate password contains 6 or more characters
   const passwordChangeHandler = (e) => {
-    setPassword(e.target.value);
+   // setPassword(e.target.value);
+    dispatch({type: "PASSWORD_INPUT", payload: e.target.value})
+    // setFormIsValid(email.includes("@") && e.target.value.trim().length > 6);
 
 };
   
   // prevent default form submit behavior
   const signIn = (e) => {
     e.preventDefault();
-    console.log(formIsValid);
+    console.log("Entered email: ", state.emailValue)
+    console.log("Entered password", state.passwordValue)
   };
 
   return (
@@ -53,12 +61,12 @@ const Login = () => {
         <form>
           <h5>Enter mobile number or email Address</h5>
           <input type="text" 
-          value={email} 
+          value={state.emailValue} 
           onChange={emailChangeHandler}
           />
           <h5>Password</h5>
           <input type="password" 
-          value={password}
+          value={state.passwordValue}
           onChange={passwordChangeHandler}
           />
 
