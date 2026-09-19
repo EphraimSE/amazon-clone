@@ -13,6 +13,7 @@ const reducer = (state, action) => {
   return { emailValue: "", passwordValue: "" };
 };
 
+// login commponent destructures the onLogin prop 
 const Login = ({onLogin}) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
@@ -48,8 +49,9 @@ const Login = ({onLogin}) => {
     dispatch({ type: "PASSWORD_INPUT", payload: e.target.value });
   };
 
-  // prevent default form submit behavior
+  // function to log user in with email and password
   const signIn = (e) => {
+    // prevent default form submit behavior
     e.preventDefault();
     console.log("Entered email: ", email);
     console.log("Entered password", password);

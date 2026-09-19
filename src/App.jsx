@@ -8,6 +8,7 @@ import ProductDetails from "./pages/ProductDetails";
 import Login from "./pages/Login";
 import Orders from "./pages/Orders";
 import NotFound from "./pages/NotFound";
+import AuthContext from "./context/AuthContext";
 
 import {
   BrowserRouter as Router,
@@ -22,31 +23,31 @@ function App() {
 
   // useEffect hook
   useEffect(() => {
-    const userInfo = localStorage.getItem('isLoggedIn');
+    const userInfo = localStorage.getItem("isLoggedIn");
 
-    if(userInfo === '1') {
-      setIsLoggedIn(true)
+    if (userInfo === "1") {
+      setIsLoggedIn(true);
     }
-  }, [])
+  }, []);
 
   // function to handle user login
   const loginHandler = (email, Password) => {
-    // store the login state in localStorage 
-    localStorage.setItem('isLoggedIn', '1')
+    // store the login state in localStorage
+    localStorage.setItem("isLoggedIn", "1");
     setIsLoggedIn(true);
-  }
-   // function to handle user logout
+  };
+  // function to handle user logout
   const logoutHandler = () => {
-    // remove the login state from localStorage 
-    localStorage.removeItem('isLoggedIn');
+    // remove the login state from localStorage
+    localStorage.removeItem("isLoggedIn");
     setIsLoggedIn(false);
-  }
+  };
 
   return (
-    <>
+    <AuthContext.Provider value={{ isLoggedIn: isLoggedIn}}>
       <Router>
         {/* pass user login props */}
-        <Header isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
+        <Header onLogout={logoutHandler} />
         <main>
           <Navbar />
           <Routes>
@@ -58,16 +59,16 @@ function App() {
 
             <Route path="/products" element={<Products />} />
             <Route path="/products/:id" element={<ProductDetails />} />
-            <Route path="/login" element={<Login onLogin={loginHandler}/>} />
+            <Route path="/login" element={<Login onLogin={loginHandler} />} />
             <Route path="/orders" element={<Orders />} />
-            <Route path="*" element={< NotFound />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
       </Router>
-    </>
+    </AuthContext.Provider>
   );
 }
 
 export default App;
- 
+
 //Checkout (isLogin) > Payment (isLogin) > PaidOrder (isLogin)
