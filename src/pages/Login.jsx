@@ -13,7 +13,7 @@ const reducer = (state, action) => {
   return { emailValue: "", passwordValue: "" };
 };
 
-const Login = () => {
+const Login = ({onLogin}) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   // initialize reducer
@@ -22,7 +22,7 @@ const Login = () => {
     passwordValue: "",
   });
 
-  // desctructure state
+  // destructure state
   const {emailValue: email, passwordValue: password} = state;
 
   // useEffect
@@ -42,7 +42,7 @@ const Login = () => {
   const emailChangeHandler = (e) => {
     dispatch({ type: "EMAIL_INPUT", payload: e.target.value });
   };
-
+ 
   // validate password contains 6 or more characters
   const passwordChangeHandler = (e) => {
     dispatch({ type: "PASSWORD_INPUT", payload: e.target.value });
@@ -53,6 +53,7 @@ const Login = () => {
     e.preventDefault();
     console.log("Entered email: ", email);
     console.log("Entered password", password);
+    onLogin(email, password);
   };
 
   return (
