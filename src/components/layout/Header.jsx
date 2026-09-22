@@ -31,7 +31,7 @@ const Header = ({ onLogout }) => {
       <div className="header_nav">
         {ctx.isLoggedIn ? (
           <Link to="/">
-            <div className="header_option" onClick={onLogout}>
+            <div className="header_option" onClick={ctx.onLogout}>
               <span className="header_optionOne">Hello User </span>
               <span className="header_optionTwo">Sign out</span>
             </div>

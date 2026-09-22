@@ -1,6 +1,7 @@
-import React, { useState, useReducer, useEffect } from "react";
+import React, { useState, useReducer, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
+import AuthContext from "../context/AuthContext"
 
 // useReducer hook
 const reducer = (state, action) => {
@@ -14,7 +15,8 @@ const reducer = (state, action) => {
 };
 
 // login commponent destructures the onLogin prop 
-const Login = ({onLogin}) => {
+const Login = () => {
+  const ctx = useContext(AuthContext);
   const [formIsValid, setFormIsValid] = useState(false);
 
   // initialize reducer
@@ -55,7 +57,7 @@ const Login = ({onLogin}) => {
     e.preventDefault();
     console.log("Entered email: ", email);
     console.log("Entered password", password);
-    onLogin(email, password);
+    ctx.onLogin(email, password);
   };
 
   return (
