@@ -11,6 +11,8 @@ import ReactDOM from "react-dom";
 //     <App />
 //   </StrictMode>,
 // )
+
+// initialize and mount REACT application to the DOM
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthContextProvider>
