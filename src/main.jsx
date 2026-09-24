@@ -16,9 +16,7 @@ import ReactDOM from "react-dom";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthContextProvider>
-      
         <App />
-     
     </AuthContextProvider>
   </StrictMode>,
   document.getElementById("root"),

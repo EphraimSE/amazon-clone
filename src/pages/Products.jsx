@@ -14,6 +14,9 @@ const Products = () => {
           <li>
             <Link to ="/products/03">Product 3</Link>
           </li>
+          <li>
+            <Link to ="/products/04">Product 4</Link>
+          </li>
         </ul>
     </div>
   )
